@@ -44,12 +44,22 @@ Key features:
 
 ```
 hotel_cancellation_model_207/
-├── data/               # Raw and processed datasets
-├── notebooks/          # EDA and model development
+├── data/
+│   ├── raw/            # Original data — read-only, do not edit
+│   └── processed/      # Outputs produced by notebook jobs
+├── notebooks/          # All work happens here (e.g. data-processing.ipynb)
 ├── src/                # Feature engineering and model pipeline
 ├── models/             # Saved model artifacts
 └── README.md
 ```
+
+## Workflow
+
+- **Do the work in notebooks.** Each job is a notebook under `notebooks/*.ipynb`.
+- **Save each job's result to `data/`.** A notebook reads its input and writes
+  its output back to `data/` so the next job can pick it up.
+  - `data/raw/` — the original dataset. **Read-only: never edit it.**
+  - `data/processed/` — cleaned / feature-engineered outputs from notebook jobs.
 
 ## Business Impact
 
