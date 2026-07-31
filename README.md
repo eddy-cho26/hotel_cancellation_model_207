@@ -6,7 +6,7 @@
 
 **Canonical notebook:** [`notebooks/final_combined.ipynb`](https://github.com/eddy-cho26/hotel_cancellation_model_207/blob/main/notebooks/final_combined.ipynb)
 
-This notebook runs the full pipeline end-to-end: cleaning, feature prep, EDA, models, and subgroup evaluation. Earlier per-model notebooks are kept under `notebooks/archive/` for reference.
+This notebook runs the full pipeline end-to-end: cleaning, feature prep, EDA, models, and subgroup evaluation. Earlier per-model notebooks are kept under `notebooks/individual_notebooks/` for reference.
 
 ## Problem
 
@@ -50,11 +50,11 @@ Key features:
 ```text
 hotel_cancellation_model_207/
 ├── data/
-│   ├── raw/                  # Original data — read-only
-│   └── processed/            # Outputs produced by the notebook
+│   ├── raw/                      # Original data — read-only
+│   └── processed/                # Outputs produced by the notebook
 ├── notebooks/
-│   ├── final_combined.ipynb  # Canonical end-to-end notebook
-│   └── individual_notebooksk/              # Earlier per-model notebooks
+│   ├── final_combined.ipynb      # Canonical end-to-end notebook
+│   └── individual_notebooks/     # Earlier per-model notebooks
 └── README.md
 ```
 
