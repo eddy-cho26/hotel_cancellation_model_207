@@ -10,7 +10,7 @@ This notebook runs the full pipeline end-to-end: cleaning, feature prep, EDA, mo
 
 ## Problem
 
-Hotels suffer significant revenue leakage from last-minute cancellations and no-shows. When a booking is cancelled too late to rebook the room, the room sits empty — a loss that cannot be recovered. Traditional overbooking strategies are blunt instruments: too conservative and rooms go empty; too aggressive and guests get walked, damaging brand reputation.
+Hotels suffer significant revenue leakage from last-minute cancellations and no-shows. When a booking is cancelled too late to rebook the room, the room sits empty, a loss that cannot be recovered. Traditional overbooking strategies are blunt instruments: too conservative and rooms go empty; too aggressive and guests get walked, damaging brand reputation.
 
 This project builds a machine learning system that assigns a **cancellation probability score** to every booking at the time it is made. By quantifying risk at the individual booking level, the hotel can make smarter, data-driven decisions about overbooking buffers, deposit policies, and outreach to at-risk guests.
 
