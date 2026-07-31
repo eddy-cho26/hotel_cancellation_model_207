@@ -47,9 +47,16 @@ Key features:
 
 ## Project Structure
 
-├── hotel_cancellation_model_207/ ├── data/ │ ├── raw/ # Original data — read-only, do not edit │ └── processed/ # Outputs produced by the notebook ├── notebooks/ │ ├── final_combined.ipynb # Canonical end-to-end notebook │ └── archive/ # Earlier per-model notebooks (reference only) └── README.md
-
-
+```text
+hotel_cancellation_model_207/
+├── data/
+│   ├── raw/                  # Original data — read-only
+│   └── processed/            # Outputs produced by the notebook
+├── notebooks/
+│   ├── final_combined.ipynb  # Canonical end-to-end notebook
+│   └── archive/              # Earlier per-model notebooks
+└── README.md
+```
 
 ## Workflow
 
