@@ -2,6 +2,12 @@
 
 **MIDS 207 — Summer 2026**
 
+## Start here
+
+**Canonical notebook:** [`notebooks/final_combined.ipynb`](https://github.com/eddy-cho26/hotel_cancellation_model_207/blob/main/notebooks/final_combined.ipynb)
+
+This notebook runs the full pipeline end-to-end: cleaning, feature prep, EDA, models, and subgroup evaluation. Earlier per-model notebooks are kept under `notebooks/archive/` for reference.
+
 ## Problem
 
 Hotels suffer significant revenue leakage from last-minute cancellations and no-shows. When a booking is cancelled too late to rebook the room, the room sits empty — a loss that cannot be recovered. Traditional overbooking strategies are blunt instruments: too conservative and rooms go empty; too aggressive and guests get walked, damaging brand reputation.
@@ -24,11 +30,10 @@ Key features:
 | `arrival_date` | Arrival date (year, month, week, day-of-month) |
 | `hotel` | Resort Hotel vs. City Hotel |
 | `adults` / `children` / `babies` | Guest composition |
-| `market_segment` | Distribution channel (Online TA, Direct, Corporate, etc.) |
+| `distribution_channel` | Booking channel (TA/TO, Direct, Corporate, etc.) |
 | `deposit_type` | No deposit, Non-refundable, or Refundable |
 | `previous_cancellations` | Historical cancellation behavior of the guest |
 | `booking_changes` | Number of modifications made to the booking |
-| `reserved_room_type` | Room category requested |
 | `adr` | Average daily rate |
 
 **Target variable:** `is_canceled` (binary: 0 = stayed, 1 = cancelled)
@@ -36,30 +41,21 @@ Key features:
 ## Technical Approach
 
 - **Task:** Binary classification
-- **Models:** Logistic Regression (baseline) → Gradient Boosting (XGBoost / LightGBM)
-- **Evaluation:** ROC-AUC, Precision-Recall AUC, calibrated probability scores
-- **Key concern:** Class imbalance handling; model calibration matters more than raw accuracy since the output drives a business decision (overbooking level), not a hard label
+- **Models:** Majority-class baseline → Logistic Regression (TensorFlow) → Decision Tree → Random Forest → 1D CNN (TensorFlow)
+- **Evaluation:** ROC-AUC and PR-AUC (primary), plus precision / recall / F1; subgroup performance by hotel type, customer type, distribution channel, guest status, and lead-time bucket
+- **Key concern:** Class imbalance handling; ranking metrics matter more than raw accuracy since the output drives a business decision (overbooking level), not a hard label
 
 ## Project Structure
 
-```
-hotel_cancellation_model_207/
-├── data/
-│   ├── raw/            # Original data — read-only, do not edit
-│   └── processed/      # Outputs produced by notebook jobs
-├── notebooks/          # All work happens here (e.g. data-processing.ipynb)
-├── src/                # Feature engineering and model pipeline
-├── models/             # Saved model artifacts
-└── README.md
-```
+hotel_cancellation_model_207/ ├── data/ │ ├── raw/ # Original data — read-only, do not edit │ └── processed/ # Outputs produced by the notebook ├── notebooks/ │ ├── final_combined.ipynb # Canonical end-to-end notebook │ └── archive/ # Earlier per-model notebooks (reference only) └── README.md
+
+
 
 ## Workflow
 
-- **Do the work in notebooks.** Each job is a notebook under `notebooks/*.ipynb`.
-- **Save each job's result to `data/`.** A notebook reads its input and writes
-  its output back to `data/` so the next job can pick it up.
-  - `data/raw/` — the original dataset. **Read-only: never edit it.**
-  - `data/processed/` — cleaned / feature-engineered outputs from notebook jobs.
+- **Run `notebooks/final_combined.ipynb`.** It loads `data/raw/`, writes cleaned splits to `data/processed/`, then trains and evaluates all models.
+- `data/raw/` — the original dataset. **Read-only: never edit it.**
+- `data/processed/` — cleaned / feature-engineered train–test splits used by the modeling sections.
 
 ## Business Impact
 
