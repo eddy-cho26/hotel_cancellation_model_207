@@ -54,7 +54,7 @@ hotel_cancellation_model_207/
 │   └── processed/            # Outputs produced by the notebook
 ├── notebooks/
 │   ├── final_combined.ipynb  # Canonical end-to-end notebook
-│   └── archive/              # Earlier per-model notebooks
+│   └── individual_notebooksk/              # Earlier per-model notebooks
 └── README.md
 ```
 
